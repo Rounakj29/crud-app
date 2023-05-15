@@ -1,0 +1,69 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employees": [
+    {
+      "firstName": "Fara",
+      "lastName": "King",
+      "email": "Fara@gmail.com",
+      "dob": "2023-05-09T18:30:00.000Z",
+      "gender": "female",
+      "education": "Graduate",
+      "company": "Google",
+      "experience": 6,
+      "package": 18,
+      "id": 1
+    },
+    {
+      "firstName": "asdas",
+      "lastName": "asdas",
+      "email": "sadasd@ss.in",
+      "dob": "2025-03-12T18:30:00.000Z",
+      "gender": "o thers",
+      "education": "Diploma",
+      "company": "asdas",
+      "experience": 4,
+      "package": 42,
+      "id": 3
+    },
+    {
+      "firstName": "axc",
+      "lastName": "zzxz",
+      "email": "asaszz1",
+      "dob": "2023-05-01T18:30:00.000Z",
+      "gender": "o thers",
+      "education": "Post-Graduate",
+      "company": "ffddf",
+      "experience": 3,
+      "package": 23,
+      "id": 5
+    },
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "JhonDoe@inn.co",
+      "dob": "1993-03-10T18:30:00.000Z",
+      "gender": "male",
+      "education": "Graduate",
+      "company": "TExHouse",
+      "experience": 5,
+      "package": 24,
+      "id": 6
+    }
+  ]
+}
