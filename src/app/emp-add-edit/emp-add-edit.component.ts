@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DIALOG_DATA } from '@angular/cdk/dialog';
 import {Inject} from '@angular/core';
 import { CoreService } from '../core/core.service';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-emp-add-edit',
@@ -16,12 +17,17 @@ export class EmpAddEditComponent implements OnInit {
   empForm: FormGroup;
 
   education:string[]=[
+    '',
     'Matric',
     'Diploma',
     'Intermediate',
     'Graduate',
     'Post-Graduate'
   ];
+
+  minDate: Date;
+  maxDate: Date;
+
 
   constructor(
     private _fb:FormBuilder,
@@ -33,7 +39,7 @@ export class EmpAddEditComponent implements OnInit {
     this.empForm = this._fb.group({
       firstName: '',
       lastName: '',
-      email: '',
+      email: ['',[Validators.required,Validators.email]],
       dob: '',
       gender: '',
       education: '',
@@ -41,10 +47,25 @@ export class EmpAddEditComponent implements OnInit {
       experience: '',
       package: '',
     })
+
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date(currentYear - 20, 0, 1);
+    this.maxDate = new Date();
+
   }
 
   ngOnInit():void{
     this.empForm.patchValue(this.data);
+  }
+
+  email = new FormControl('', [Validators.required, Validators.email]);
+
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
   onFormSubmit(){

@@ -1,21 +1,4 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "employees": [
     {
       "firstName": "Fara",
@@ -64,6 +47,31 @@
       "experience": 5,
       "package": 24,
       "id": 6
+    },
+    {
+      "firstName": "wqwqe",
+      "lastName": "qwe",
+      "email": "eq@s",
+      "dob": "2023-05-08T18:30:00.000Z",
+      "gender": "male",
+      "education": "Post-Graduate",
+      "company": "as",
+      "experience": "",
+      "package": 4,
+      "id": 7
+    },
+    {
+      "firstName": "sss",
+      "lastName": "Doe",
+      "email": "JhonDoe@inn.co",
+      "dob": "2023-05-17T18:30:00.000Z",
+      "gender": "",
+      "education": "",
+      "company": "",
+      "experience": "",
+      "package": "",
+      "id": 9
     }
-  ]
+  ],
+  "user": []
 }

@@ -4,24 +4,32 @@
   <div class="row">
   <mat-form-field appearance="outline">
     <mat-label>First Name</mat-label>
-    <input matInput type="text" placeholder="John" formControlName="firstName">
+    <input matInput type="text" placeholder="John" formControlName="firstName" required>
+    <mat-error  *ngIf="empForm.get('firstName')?.touched && empForm.get('firstName')?.errors">First Name is Required</mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Last Name</mat-label>
-    <input matInput type="text" placeholder="Doe" formControlName="lastName">
+    <input matInput type="text" placeholder="Doe" formControlName="lastName" required>
+  <mat-error *ngIf="empForm.get('lastName')?.hasError('required')">Last Name is Required</mat-error>
+
   </mat-form-field>
 </div>
 <div class="row">
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
-    <input matInput type="email" placeholder="etc@gmail.com" formControlName="email">
+    <input matInput  placeholder="etc@gmail.com"  formControlName="email" required>
+    <mat-error *ngIf="empForm.get('email')?.touched && empForm.get('email')?.errors">Invalid Email</mat-error>
+    <mat-error *ngIf="empForm.get('email')?.hasError('required')">Email is Required</mat-error>
+
+
   </mat-form-field>
 
   <mat-form-field appearance="outline">
     <mat-label>Date Of Birth</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="dob">
-    <mat-hint>MM/DD/YYYY</mat-hint>
+    <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" formControlName="dob" required readonly="readonly">
+  <mat-error *ngIf="empForm.get('dob')?.hasError('required')">DOB is Required</mat-error>
+
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
@@ -38,11 +46,15 @@
 <div class="row">
   <mat-form-field appearance="outline">
     <mat-label>Education</mat-label>
-    <mat-select formControlName="education">
+    <mat-select formControlName="education" required>
       <mat-option *ngFor="let val of education" [value]="val">
         {{val}}
       </mat-option>
+
     </mat-select>
+  <mat-error *ngIf="empForm.get('education')?.hasError('required')">You must make a selection</mat-error>
+
+
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Company</mat-label>
