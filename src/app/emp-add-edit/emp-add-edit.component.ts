@@ -49,7 +49,7 @@ export class EmpAddEditComponent implements OnInit {
     })
 
     const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 20, 0, 1);
+    this.minDate = new Date(currentYear - 40, 0, 1);
     this.maxDate = new Date();
 
   }
@@ -67,10 +67,18 @@ export class EmpAddEditComponent implements OnInit {
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
-
+ 
   onFormSubmit(){
     if(this.empForm.valid){
      if(this.data){
+      if(this.data.experiance == null)
+      {
+        this.data.experiance=0;
+      }
+      if(this.data.package == null)
+      {
+        this.data.package=0;
+      }
       this._empService.editEmployee(this.data.id,this.empForm.value).subscribe({
         next: (val:any) => {
           this._coreService.openSnackBar('Employee Details Updated!',''); //
@@ -78,10 +86,22 @@ export class EmpAddEditComponent implements OnInit {
         },
         error: (err:any) => {
           console.error("Error Updating employee",err);
+          alert("Error");
         },
       })
      }
       else{
+       var pack= this.empForm.value['package'];
+      var exp=this.empForm.value['experience'];        
+ 
+        if(exp =="" || exp == null)
+        {
+           this.empForm.value['experience']=0; 
+        }
+        if(pack =="" || pack == null){
+          this.empForm.value['package']=0; 
+        }
+          
       this._empService.addEmployee(this.empForm.value).subscribe({
         next: (val:any) => {
           this._coreService.openSnackBar('Employee Added!',''); //
@@ -89,6 +109,7 @@ export class EmpAddEditComponent implements OnInit {
         },
         error: (err:any) => {
           console.error("Error adding employee",err);
+          alert("Error");
         },
       })
     }

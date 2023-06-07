@@ -58,17 +58,17 @@
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Company</mat-label>
-    <input matInput type="text" placeholder="Ex. Wipro" formControlName="company">
+    <input matInput type="text" placeholder="Ex. Wipro" formControlName="company" >
   </mat-form-field>
 </div>
 <div class="row">
   <mat-form-field appearance="outline">
     <mat-label>Experience</mat-label>
-    <input matInput type="number" placeholder="Ex. 2+" min="0" formControlName="experience">
+    <input matInput type="number" placeholder="Ex. 2+" value="0" min="0" formControlName="experience" id="exp" >
   </mat-form-field>
   <mat-form-field appearance="outline">
     <mat-label>Package</mat-label>
-    <input matInput type="number" placeholder="8" min="0" formControlName="package">
+    <input matInput type="number"  placeholder="8" value="0" min="0" formControlName="package"  id="pack">
     <mat-hint>In Rupees</mat-hint>
   </mat-form-field>
 </div>
