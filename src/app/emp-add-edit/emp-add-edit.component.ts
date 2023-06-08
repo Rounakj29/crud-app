@@ -28,7 +28,11 @@ export class EmpAddEditComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
 
+  myFunction() {
+   var a=(<HTMLInputElement>document.getElementById("comp")).value;
+   var e=(<HTMLInputElement>document.getElementById("pack")).setAttribute("required","required");
 
+  }
   constructor(
     private _fb:FormBuilder,
      private _empService: EmployeeService,
@@ -56,7 +60,7 @@ export class EmpAddEditComponent implements OnInit {
 
   ngOnInit():void{
     this.empForm.patchValue(this.data);
-  }
+  }  
 
   email = new FormControl('', [Validators.required, Validators.email]);
 

@@ -7,10 +7,20 @@
   padding-top: 20px ;
   margin: 0 auto;
   max-width: 1248px;
+  padding-bottom: 20px;
   mat-form-field{
-    width: 100%;
+  width: 100%;
   }
 }
 #buton{
   display: flex;
+}
+
+.whole-page{
+  background-color: gainsboro;
+
+}
+
+tbody{
+  display: table-caption;
 }

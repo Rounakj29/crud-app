@@ -7,6 +7,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { CoreService } from './core/core.service';
+import {MatSnackBar,MatSnackBarDismiss,MatSnackBarHorizontalPosition,MatSnackBarModule,MatSnackBarRef,MatSnackBarVerticalPosition, TextOnlySnackBar,} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -33,12 +34,38 @@ export class AppComponent implements OnInit {
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 @ViewChild(MatSort) sort!: MatSort;
 
+horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+verticalPosition: MatSnackBarVerticalPosition = 'top';
+
   constructor(
     private _dialog: MatDialog,
      private _empService: EmployeeService,
      private _coreService: CoreService,
-     public dialog: MatDialog
+     public dialog: MatDialog,
+     private _snackBar: MatSnackBar
      ){}
+
+     openSnackBar(id:number) {
+      let mySnackBar: MatSnackBarRef<TextOnlySnackBar> = this._snackBar.open('Delete Employee!!', 'Delete',{
+        duration:8000
+      });
+      mySnackBar.afterDismissed().subscribe((matSnackBarDismiss: MatSnackBarDismiss) => {
+        console.log('afterDismissed');
+      });
+      mySnackBar.onAction().subscribe(() => {
+        console.log('onAction');
+        this.deleteEmployee(id);
+        mySnackBar.dismiss();
+      });
+      mySnackBar.afterOpened().subscribe(() => {
+        console.log('afterOpened');
+      });
+      // this._snackBar.open('Delete Employee!!', ' this.deleteEmployee(id)', {
+      //   horizontalPosition: this.horizontalPosition,
+      //   verticalPosition: this.verticalPosition,
+      // });
+     
+    }
 
   ngOnInit(): void {
       this.getEmployeeList();
@@ -78,9 +105,10 @@ export class AppComponent implements OnInit {
   }
 
   deleteEmployee(id:number) {
+   
     this._empService.deleteEmployee(id).subscribe({
       next: (res)=> {
-        this._coreService.openSnackBar('Employee deleted successfully','ok');
+        this._coreService.openSnackBar('Employee deleted successfully','');
         this.getEmployeeList();
       },
       error: (err)=> {
